@@ -3,8 +3,7 @@
 function movie_data($movieID)
 {
 	try{
-	//  82.148.66.15  10.200.10.24  GRU_H5   foxyboxy1337
-	$pdo = new PDO('mysql:host=82.148.66.15;dbname=2810962739_mb', '2810962739', 'fahrenheit');
+	$pdo = new PDO('mysql:host=localhost;dbname=mb', 'root', '');
 
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
