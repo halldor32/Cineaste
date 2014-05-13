@@ -9,7 +9,6 @@
 
   <section class="top-bar-section">
     <ul class="right">
-      <!-- <li class="active"><a href="#">Right Button Active</a></li> -->
       <?php if (logged_in() == true) { ?>
           <li class="has-dropdown">
         <a href=""><img class="nav-avatar" src="images/avatar/<?php echo $user_data['avatar'] ?>" /> <?php echo $user_data['username']; ?></a>
@@ -130,7 +129,6 @@
         include 'includes/footer.inc.php';
       }
       elseif ($title == 'Movies') {
-        include 'includes/movieInfo.inc.php';
         include 'includes/moviePagination.inc.php';
         include 'includes/footer.inc.php';
       }

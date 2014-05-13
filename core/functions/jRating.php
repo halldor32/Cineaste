@@ -9,11 +9,7 @@ $aResponse['message'] = '';
 
 if($_GET['rate']!='' && $_GET['movieID']!='' && $_SESSION['userID']!='')
  {
- 	// if(htmlentities($_POST['action'], ENT_QUOTES, 'UTF-8') == 'rating')
- 	// {
- 		/*
- 		* vars
- 		*/
+
  		$id = $_GET['movieID'];
  		$rate = $_GET['rate'];
  		$userID = $_SESSION['userID'];
@@ -28,7 +24,6 @@ if($_GET['rate']!='' && $_GET['movieID']!='' && $_SESSION['userID']!='')
  		else
  		{
  			$query5 = $pdo->prepare("INSERT INTO `user_has_movies` (`userID`, `movieID`, `rating`) VALUES (:userID, :movieID, :rating)");
-   			//$query5->execute(array(':userID' => $userID, ':movieID' => $id, ':rating' => $rate));
    			$query5->bindParam(':userID', $userID, PDO::PARAM_INT);
    			$query5->bindParam(':movieID', $id, PDO::PARAM_INT);
    			$query5->bindParam(':rating', $rate, PDO::PARAM_STR);
@@ -72,15 +67,7 @@ if($_GET['rate']!='' && $_GET['movieID']!='' && $_SESSION['userID']!='')
 			
  			echo json_encode($aResponse);
  		}
- 	// }
- 	// else
- 	// {
- 	// 	$aResponse['error'] = true;
- 	// 	$aResponse['message'] = '"action" post data not equal to \'rating\'';
-		
-		
- 	// 	echo json_encode($aResponse);
- 	// }
+
  }
  else
  {

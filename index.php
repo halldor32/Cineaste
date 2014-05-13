@@ -1,5 +1,6 @@
 <?php 
-  include 'core/init.php';
+  
+  include 'core/init.php'; 
   include 'includes/overall/header.php';
  ?>
 
@@ -7,8 +8,6 @@
 
 <div class="hide-for-medium-down">
  <?php include 'includes/tour.inc.php'; ?>
-
- 	<?php //include 'includes/whatYouGet.inc.php'; ?>
 
  	<?php include 'includes/indexRandom.inc.php'; ?>
 

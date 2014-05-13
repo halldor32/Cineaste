@@ -1,8 +1,7 @@
 <?php
 // dbcon
 try{
-	//  82.148.66.15   GRU_H5   foxyboxy1337
-	$pdo = new PDO('mysql:host=10.200.10.24;dbname=gru_h5_movies', 'GRU_H5', 'foxyboxy1337');
+	$pdo = new PDO('mysql:host=localhost;dbname=mb', 'root', '');
 
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -36,7 +35,7 @@ $search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
 if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	
 	// Leita í gagnagrunninum
-		$query = $pdo->prepare("SELECT * FROM movies WHERE name LIKE '%".$search_string."%' LIMIT 5");
+		$query = $pdo->prepare("SELECT * FROM movies WHERE movie_name LIKE '%".$search_string."%' LIMIT 15");
 		$query->execute();
 
 		// setja niðurstöður í array
@@ -49,9 +48,9 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 		foreach ($result_array as $result) {
 
 			// Formatta Output strenginn. setur bold á niðursöður sem passa
-			$display_year = preg_replace("/".$search_string."/i", "<b class='highlight'>".$search_string."</b>", $result['year']);
-			$display_name = preg_replace("/".$search_string."/i", "<b class='highlight'>".$search_string."</b>", $result['name']);
-			$display_url = 'http://tsuts.tskoli.is/hopar/GRU_H5/movie.php?movieID='.urlencode($result['movieID']);
+			$display_year = preg_replace("/".$search_string."/i", "<strong class='highlight'>".$search_string."</strong>", $result['movie_year']);
+			$display_name = preg_replace("/".$search_string."/i", "<strong class='highlight'>".$search_string."</strong>", $result['movie_name']);
+			$display_url = 'http://localhost/cineaste/Movies.php?m='.urlencode($result['ID']);
 
 			// Inserta nafn
 			$output = str_replace('nameString', $display_name, $html);

@@ -10,6 +10,8 @@ $title = ucfirst(basename($_SERVER['SCRIPT_NAME'], '.php'));
 	require 'functions/general.php';
 	require 'functions/users.php';
 	require 'includes/PHPMailer-master/class.phpmailer.php';
+	require 'functions/Upload_ns.php';
+
 
 // require 'functions/jRating.php';
 
@@ -22,12 +24,9 @@ if (logged_in() === true) {
 // nær í upplýsingar um kvikmyndina ef það hefur id af henni
 if (movie_isset() === true) {
 	$get_movie_id = $_GET['m'];
-	//$movie_data = movie_data($get_movie_id, 'movieID', 'name', 'genreID', 'rating', 'directorID', 'imageID', 'year', 'info');
-	//$movie_data = legit_movie_data($get_movie_id, $pdo);
 	$movie_data = movie_data($get_movie_id, 'ID', 'movie_name', 'CtCode', 'movie_year', 'description', 'background', 'poster', 'ageLimit');
-	//echo $movie_data['image'];
 }
-
+// nær í upplýsingar um þáttinn ef það hefur id af honum
 if (tv_isset() === true) {
 	$get_tv_id = $_GET['t'];
 	$tv_data = tv_data($get_tv_id, 'ID', 'tv_name', 'tv_year', 'ctCode', 'description', 'ageLimit', 'poster', 'background');

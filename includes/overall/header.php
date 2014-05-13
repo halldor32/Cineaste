@@ -5,7 +5,6 @@
 	<head>
 		<meta charset="utf-8">
 	   	<meta name="viewport" content="width=device-width">
-	   	<?php// $title = ucfirst(basename($_SERVER['SCRIPT_NAME'], '.php')); ?>
 	   	<title>Cineaste <?php if ($title != 'Index') {
 	   		echo ' - '. $title;
 	   	} ?></title>

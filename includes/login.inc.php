@@ -1,5 +1,4 @@
 <?php
-//include '../init.php';
 
 //skráir notanda inn
 if (empty($_POST) === false) 
@@ -24,6 +23,8 @@ if (empty($_POST) === false)
         }
         else
         { 
+            $timestamp = time();
+            $_SESSION['timestamp'] = $timestamp;
             $_SESSION['ID'] = $login;
             header('Location: ../cineaste');
             exit();
@@ -39,11 +40,9 @@ if (empty($_POST) === false)
           <form action="" method="post">
             <h5>Login</h5>
             <div class="large-12 columns">
-              <!-- <label for="username">Username</label> -->
               <input type="text" placeholder="Username" name="username" id="username">
             </div>
             <div class="large-12 columns">
-              <!-- <label for="password">Password</label> -->
               <input type="password" placeholder="Password" name="password" id="password">
             </div>
             <div class="center"><input class="button small" type="submit" value="Login" name="Submit" id="Submit"></div>

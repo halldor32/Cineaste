@@ -125,9 +125,3 @@
   </div>
 </div>
 </div>
-  <!-- End Main Page-->
-
-  <!-- Footer ________________________________________________________________-->
-  <?php
-    //include('includes/overall/footer.php');
-   ?>

@@ -12,7 +12,6 @@
         <div class="large-12 columns Heading"><h5>Umsagnir</h5></div>
         <div class="large-12 columns">
         
-    <!-- <h2>Umsagnir.....</h2> -->
     <div class="comment-block">
    
        <?php $review = review_for_movie($movie_data['movieID'], $pdo);
@@ -20,10 +19,6 @@
         <?php if (reviewed_before($comment['userID'], $movie_data['movieID'], $pdo) === false) { ?>
           <div class="comment-item">
         <div class="comment-post">
-
-        <!--<?php// if ($comment['userID'] == $user_data['userID']): ?>
-            <p>asdasdasdasd</p>
-        <?php// endif ?>-->
 
           <h3><?php echo $comment['first_name'] . ' ' . $comment['last_name']; ?> <small>sagði....</small></h3>
           <p><?php echo $comment['review']; ?></p>

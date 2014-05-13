@@ -24,6 +24,25 @@ function send_email($firstname,$lastname,$username,$password,$email,$pdo){
             
             if (!$mail->Send()) {
                     echo '<p class="text-center error">Error, email has not been sent</p>';
+
+                    $register_data = array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'username' => $username,
+                        'user_password' => $password,
+                        'email' => $email
+                    );
+
+                    register_user($register_data, $pdo);
+                      if (user_exists($register_data['username'], $pdo)) {
+                        $login = login($register_data['username'], $register_data['user_password'], $pdo);
+                        $_SESSION['ID'] = $login;
+                        header('Location: ../../../cineaste');
+                      }
+                      else
+                      {
+                        echo 'You could not be registered.';
+                      }
             }
             else
             {
@@ -34,7 +53,7 @@ function send_email($firstname,$lastname,$username,$password,$email,$pdo){
                         'user_password' => $password,
                         'email' => $email
                         );
-                    //echo '<p class="text-center error">Email has been sent</p>';
+                    echo '<p class="text-center error">Email has been sent</p>';
                     register_user($register_data, $pdo);
                       if (user_exists($register_data['username'], $pdo)) {
                         $login = login($register_data['username'], $register_data['user_password'], $pdo);

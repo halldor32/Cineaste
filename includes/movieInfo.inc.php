@@ -12,10 +12,6 @@
 					<div class="large-6 columns">
 						<?php 
 							$movie_rating = rating_for_movie($movie_data['ID'], $pdo);
-
-							//foreach ($movie_rating as $key => $value) {
-								
-							//}
 						 ?>
 						 rating
 					</div>

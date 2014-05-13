@@ -10,13 +10,6 @@
 				<div class="large-6 info-height info-margin-left columns">
 					<div class="row">
 					<div class="large-6 columns">
-						<?php 
-							//$movie_rating = rating_for_movie($movie_data['ID'], $pdo)
-
-							//foreach ($movie_rating as $key => $value) {
-							//}
-							//print_r($tv_data);
-						 ?>
 					</div>
 					<div class="large-6 columns">
 						rate
@@ -48,4 +41,61 @@
 		</div>
 	</div>
 	</div>
+</div>
+
+<div class="photo-outer-border-container">
+	<div class="photo-inner-border-container width">
+		<h2 class="h2-section large-12 columns"><span class="h2-section-text">Photos</span><?php if (logged_in()) { ?><a href="#" title="Upload Images" data-reveal-id="upload-img" class="margin-left upload-image"> <?php } ?></a><a href="TV.php" class="h2-section-link">more</a></h2>
+		<div class="large-12 columns">
+			<ul class="clearing-thumbs" data-clearing>
+				<?php 
+					$imgs = get_images_from_show($tv_data['ID']);
+					
+					foreach ($imgs as $key => $value) { ?>
+						<li><a href="<?php echo $value['path']; ?>"><img class="photo-height" src="<?php echo $value['path'] ?>"></a></li>
+					<?php } ?>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<?php 
+	// uploadar myndum
+	$max = 18388608;
+	if (isset($_POST['submit'])) {
+		$path = 'images/show';
+		$folder = $tv_data['tv_name'];
+		try {
+			$upload = new Upload($path,$folder,'show',$user_data['ID']);
+			$upload->setMaxSize($max);
+			$upload->addPermittedTypes(array('image/jpg','image/png', 'image/jpeg'));
+			$upload->move(false);
+			$result = $upload->getMessages();
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
+
+		if (isset($result)) {
+			$count=0;
+			foreach ($result as $message) {
+				$count++;
+				echo '<p class="subheader">'.$count . ". " .$message.'</p>';
+			}
+		}
+	}
+?>
+
+<!-- reveal modal for uploading images -->
+<!-- <div id="upload-img" class="reveal-modal" data-reveal> -->
+<div class="photo-outer-border-container">
+<div class="photo-inner-border-container width">
+  <h2>Add images to <?php echo $tv_data['tv_name']; ?></h2>
+  
+	<form action="" method="POST" enctype="multipart/form-data">
+		<input type="file" name="file[]" multiple>
+		<input type="submit" name="submit" class="button small">
+	</form>
+
+  <!-- <a class="close-reveal-modal">&#215;</a> -->
+</div>
 </div>

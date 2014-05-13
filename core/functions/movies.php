@@ -230,28 +230,28 @@ function reviewed_before($userID, $movieID, $pdo) {
 	$query2->execute(array(':userID' => $userID, ':movieID' => $movieID));
 	return ($query2->fetchColumn() == NULL) ? true : false;
 }
-
+// nær í rating fyrir kvikmyndir
 function rating_for_movie($movieID, $pdo) {
 	$query2 = $pdo->prepare("SELECT rating FROM user_has_rating WHERE movieID = ?");
 	$query2->bindValue(1, $movieID);
 	$query2->execute();
 	return $query2->fetchAll();
 }
-
+// nær í agelimit kvikmyndar
 function get_movie_ageLimit($movieID, $pdo) {
 	$query2 = $pdo->prepare("SELECT age_limit FROM age_limit WHERE ID = ?");
 	$query2->bindValue(1, $movieID);
 	$query2->execute();
 	return $query2->fetchColumn();
 }
-
+// nær í land sem kvikmynd er frá
 function get_country_from_movie($CtCode, $pdo) {
 	$query2 = $pdo->prepare("SELECT CtName FROM countries WHERE CtCode = ?");
 	$query2->bindValue(1, $CtCode);
 	$query2->execute();
 	return $query2->fetchColumn();
 }
-
+// nær í tegund fyrir kvikmynd
 function get_genre_for_movie($movieID, $pdo) {
 	$query2 = $pdo->prepare("SELECT genre_Name FROM genre JOIN movies_has_genre ON genre.ID=movies_has_genre.genreID JOIN movies ON movies_has_genre.movieID=movies.ID WHERE movies.ID = ?");
 	$query2->bindValue(1, $movieID);

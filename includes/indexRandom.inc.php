@@ -14,7 +14,7 @@
 			foreach ($random_movie as $key => $value) {
 				$movie_data = movie_data($value, 'ID', 'movie_name', 'movie_year', 'poster'); ?>
 				<li class="text-center">
-					<a href="Movies?m=<?php echo $movie_data['ID']; ?>" class="color-black name-font-size">
+					<a href="Movies.php?m=<?php echo $movie_data['ID']; ?>" class="color-black name-font-size">
 						<img title="<?= $movie_data['movie_name'] . ' (' . $movie_data['movie_year'] . ')'; ?>" src="images/movie-poster/<?= $movie_data['poster']; ?>" alt="Poster of <?= $movie_data['movie_name']; ?>">
 						
 					</a>
@@ -37,7 +37,7 @@
 				foreach ($random_tv as $key => $value) {
 					$tv_data = tv_data($value, 'ID', 'tv_name', 'tv_year', 'poster'); ?>
 					<li class="text-center">
-						<a href="TV?t=<?php echo $tv_data['ID']; ?>" class="color-black name-font-size">
+						<a href="TV.php?t=<?php echo $tv_data['ID']; ?>" class="color-black name-font-size">
 							<img title="<?= $tv_data['tv_name'] . ' (' . $tv_data['tv_year'] . ')'; ?>" src="images/tv-poster/<?= $tv_data['poster']; ?>" alt="Poster of <?= $tv_data['tv_name']; ?>">
 							
 						</a>
